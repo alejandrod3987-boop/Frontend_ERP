@@ -1,0 +1,337 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  
+  /* Sobrescribir colores Teal con la gama Oficial del Verde SENA (#39A900) */
+  --color-teal-50: #f1fbf0;
+  --color-teal-100: #e0f7de;
+  --color-teal-200: #c0eebe;
+  --color-teal-300: #91de8c;
+  --color-teal-400: #5ec856;
+  --color-teal-500: #39a900; /* Verde Principal SENA */
+  --color-teal-600: #2c8700;
+  --color-teal-700: #216700;
+  --color-teal-800: #1d5204;
+  --color-teal-900: #194506;
+  --color-teal-950: #0b2502;
+
+  /* Variables específicas SENA */
+  --color-sena: #39a900;
+  --color-sena-dark: #2c8700;
+  --color-sena-light: #5ec856;
+
+  /* Fondo oscuro ultra-premium para alto contraste con Verde SENA */
+  --color-dark-bg: #0b0f19;
+  --color-dark-card: #151a26;
+  --color-dark-border: #242b3d;
+}
+
+body {
+  background-color: #0b0f19;
+  color: #ffffff;
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+/* Efectos de vidrio (Glassmorphism Premium) */
+.glass-panel {
+  background: rgba(21, 26, 38, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+}
+
+.glass-card {
+  background: rgba(21, 26, 38, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.glass-premium {
+  background: linear-gradient(145deg, rgba(21, 26, 38, 0.9), rgba(11, 15, 25, 0.8));
+  backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-left: 1px solid rgba(255, 255, 255, 0.05);
+  border-right: 1px solid rgba(0, 0, 0, 0.35);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.45);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+}
+
+/* Animaciones Avanzadas */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes softPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(0.98); }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 5px rgba(57, 169, 0, 0.25), 0 0 10px rgba(57, 169, 0, 0.15); }
+  50% { box-shadow: 0 0 12px rgba(57, 169, 0, 0.55), 0 0 24px rgba(57, 169, 0, 0.35); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-soft-pulse {
+  animation: softPulse 2.5s infinite ease-in-out;
+}
+
+.animate-glow {
+  animation: glow 3s infinite ease-in-out;
+}
+
+/* Scrollbar personalizado mejorado */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(55, 65, 81, 0.6);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(57, 169, 0, 0.8);
+}
+
+/* ==========================================
+   ESTILOS PREMIUM TEMA CLARO (LIGHT MODE)
+   ========================================== */
+
+/* Variables locales del tema claro */
+.light-mode {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+/* Forzar que el fondo de la app sea blanco azulado limpio en modo claro */
+div.light-mode {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+/* Reemplazar fondos de tarjetas oscuras a tarjetas blancas puras */
+.light-mode [class*="bg-[#1a1f2e]"],
+.light-mode [class*="bg-[#151a26]"],
+.light-mode .bg-gray-800,
+.light-mode [class*="bg-[#252b3b]"],
+.light-mode [class*="bg-[#242b3d]"],
+.light-mode aside {
+  background-color: #ffffff !important;
+}
+
+/* Reemplazar subpaneles oscuros a gris claro de alto contraste */
+.light-mode .bg-gray-900,
+.light-mode .bg-gray-950,
+.light-mode [class*="bg-[#0b0f19]"],
+.light-mode [class*="bg-gray-900/60"],
+.light-mode [class*="bg-gray-900/80"],
+.light-mode [class*="bg-gray-900/20"],
+.light-mode [class*="bg-gray-800/40"],
+.light-mode [class*="bg-[#242b3d]/60"],
+.light-mode .bg-teal-950,
+.light-mode .bg-blue-950,
+.light-mode .bg-purple-950,
+.light-mode .bg-amber-950 {
+  background-color: #f1f5f9 !important;
+}
+
+/* Modificar bordes oscuros a bordes grises claros y limpios */
+.light-mode .border-gray-800,
+.light-mode .border-gray-700,
+.light-mode .border-gray-850,
+.light-mode .border-gray-750,
+.light-mode [class*="border-gray-700/50"],
+.light-mode [class*="border-gray-800/80"],
+.light-mode [class*="border-gray-800/40"],
+.light-mode [class*="border-teal-700/60"],
+.light-mode [class*="border-teal-500/30"],
+.light-mode [class*="border-amber-500/30"],
+.light-mode [class*="border-teal-700/50"],
+.light-mode .border-r-gray-700,
+.light-mode .border-y-gray-700,
+.light-mode .border-r,
+.light-mode .border {
+  border-color: #e2e8f0 !important;
+}
+
+.light-mode .border-l-orange-500 {
+  border-left-color: #f97316 !important;
+}
+
+/* Asegurar legibilidad del texto principal y secundario */
+.light-mode .text-white,
+.light-mode .text-gray-100,
+.light-mode .text-gray-200,
+.light-mode .text-gray-300,
+.light-mode h1,
+.light-mode h2,
+.light-mode h3,
+.light-mode h4,
+.light-mode h5,
+.light-mode h6 {
+  color: #0f172a !important;
+}
+
+.light-mode .text-gray-400,
+.light-mode .text-gray-500,
+.light-mode [class*="text-teal-300/80"],
+.light-mode [class*="text-amber-300/80"] {
+  color: #475569 !important;
+}
+
+/* Mejorar el color del texto verde/teal para fondos claros (mejor contraste) */
+.light-mode .text-teal-400,
+.light-mode .text-teal-350,
+.light-mode .text-teal-300 {
+  color: #2c8700 !important; /* Verde oscuro SENA */
+}
+
+/* Modificar badges del sistema */
+.light-mode [class*="bg-teal-950/40"] {
+  background-color: #f0fdf4 !important;
+  border-color: #cbd5e1 !important;
+}
+
+.light-mode .text-teal-200 {
+  color: #15803d !important;
+}
+
+/* Glassmorphism adaptivo en modo claro */
+.light-mode .glass-panel {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  box-shadow: 0 4px 20px rgba(148, 163, 184, 0.08) !important;
+}
+
+.light-mode .glass-card {
+  background: rgba(255, 255, 255, 0.6) !important;
+  border: 1px solid rgba(15, 23, 42, 0.05) !important;
+  box-shadow: 0 2px 12px rgba(148, 163, 184, 0.04) !important;
+}
+
+.light-mode .glass-premium {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.95)) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.9) !important;
+  border-left: 1px solid rgba(255, 255, 255, 0.8) !important;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.15) !important;
+  border-right: 1px solid rgba(148, 163, 184, 0.1) !important;
+  box-shadow: 0 8px 30px rgba(148, 163, 184, 0.1) !important;
+}
+
+/* Sombras en modo claro */
+.light-mode .shadow-2xl {
+  box-shadow: 0 25px 50px -12px rgba(148, 163, 184, 0.15) !important;
+}
+
+/* Elementos activos del sidebar */
+.light-mode [class*="hover:bg-gray-800/80"]:hover,
+.light-mode .hover\:bg-gray-800:hover,
+.light-mode .hover\:bg-gray-750:hover {
+  background-color: #f1f5f9 !important;
+  color: #39a900 !important;
+}
+
+.light-mode [class*="text-gray-400"][class*="hover:text-white"]:hover {
+  color: #2c8700 !important;
+}
+
+/* Botones en inputs */
+.light-mode select,
+.light-mode input[type="text"],
+.light-mode input[type="email"],
+.light-mode input[type="password"],
+.light-mode textarea {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+
+.light-mode select::placeholder,
+.light-mode input::placeholder,
+.light-mode textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+/* Badges e iconos específicos de Lucide */
+.light-mode .text-blue-400 {
+  color: #1d4ed8 !important;
+}
+.light-mode .text-purple-400 {
+  color: #7e22ce !important;
+}
+.light-mode .text-amber-400 {
+  color: #b45309 !important;
+}
+
+.light-mode [class*="bg-blue-500/20"] {
+  background-color: rgba(29, 78, 216, 0.1) !important;
+}
+.light-mode [class*="bg-amber-500/20"] {
+  background-color: rgba(180, 83, 9, 0.1) !important;
+}
+.light-mode [class*="bg-purple-500/20"] {
+  background-color: rgba(126, 34, 206, 0.1) !important;
+}
+
+/* Alertas especiales en modo claro */
+.light-mode [class*="bg-red-950/40"],
+.light-mode [class*="bg-red-950/80"] {
+  background-color: #fef2f2 !important;
+  border-color: #fecaca !important;
+}
+.light-mode .text-red-200,
+.light-mode .text-red-300 {
+  color: #991b1b !important;
+}
+
+/* Tooltips de Recharts */
+.light-mode .recharts-default-tooltip {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+  box-shadow: 0 10px 15px -3px rgba(148, 163, 184, 0.1) !important;
+}
+
+/* Modales en modo claro */
+.light-mode [class*="bg-[#1a1f2e]/80"] {
+  background-color: rgba(15, 23, 42, 0.3) !important;
+}
+
+.light-mode [class*="bg-gray-800/30"] {
+  background-color: #f8fafc !important;
+}
+
+
