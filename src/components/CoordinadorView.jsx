@@ -1,32 +1,35 @@
 import React, { useState } from 'react';
 import { 
-  LayoutDashboard, ClipboardCheck, Users, FileText, Clock, Download, User, Moon, LogOut, Menu, X, Building 
+  LayoutDashboard, ClipboardCheck, Users, FileText, Clock, Download, User, Moon, LogOut, Menu, X, Building, UserPlus, Sparkles 
 } from 'lucide-react';
 
 // Importar sub-pantallas
 import CoordinadorDashboard from './coordinador/CoordinadorDashboard';
 import CoordinadorRevisar from './coordinador/CoordinadorRevisar';
 import CoordinadorInstructores from './coordinador/CoordinadorInstructores';
-import CoordinadorGestionPlantilla from './coordinador/CoordinadorGestionPlantilla';
 import CoordinadorHistorial from './coordinador/CoordinadorHistorial';
 import CoordinadorExportar from './coordinador/CoordinadorExportar';
 import CoordinadorMiCuenta from './coordinador/CoordinadorMiCuenta';
+import CoordinadorSolicitudes from './coordinador/CoordinadorSolicitudes';
+import CoordinadorIA from './coordinador/CoordinadorIA';
 
 export default function CoordinadorView({ user, onLogout, globalState, addToast }) {
   const [sectionActive, setSectionActive] = useState('Dashboard');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(false); // Tema claro (identidad SENA) por defecto
 
   const { 
     informes, 
     instructores, 
     updateInforme, 
     addNotificacion, 
-    notificaciones 
+    notificaciones,
+    usuarios 
   } = globalState;
 
-  // Cantidad de informes pendientes de revisión
+  // Cantidades para badges
   const countPendientes = informes.filter(inf => inf.estado === 'En Revision' || inf.estado === 'En Revisión').length;
+  const countSolicitudes = usuarios.filter(u => u.estado === 'Pendiente').length;
 
   const menuItems = [
     { name: 'Dashboard', icon: LayoutDashboard },
@@ -36,10 +39,16 @@ export default function CoordinadorView({ user, onLogout, globalState, addToast 
       badge: countPendientes > 0 ? countPendientes : null,
       badgeColor: 'bg-orange-500 text-white' 
     },
+    { 
+      name: 'Solicitudes', 
+      icon: UserPlus, 
+      badge: countSolicitudes > 0 ? countSolicitudes : null,
+      badgeColor: 'bg-teal-500 text-white' 
+    },
     { name: 'Instructores', icon: Users },
-    { name: 'Gestión de Plantilla GC', icon: FileText },
     { name: 'Historial', icon: Clock },
     { name: 'Exportar Informes', icon: Download },
+    { name: 'Asistente IA', icon: Sparkles },
     { name: 'Mi Cuenta', icon: User }
   ];
 
@@ -68,6 +77,13 @@ export default function CoordinadorView({ user, onLogout, globalState, addToast 
             addToast={addToast} 
           />
         );
+      case 'Solicitudes':
+        return (
+          <CoordinadorSolicitudes 
+            globalState={globalState} 
+            addToast={addToast} 
+          />
+        );
       case 'Instructores':
         return (
           <CoordinadorInstructores 
@@ -75,12 +91,12 @@ export default function CoordinadorView({ user, onLogout, globalState, addToast 
             informes={informes} 
           />
         );
-      case 'Gestión de Plantilla GC':
-        return <CoordinadorGestionPlantilla addToast={addToast} />;
       case 'Historial':
         return <CoordinadorHistorial addToast={addToast} />;
       case 'Exportar Informes':
         return <CoordinadorExportar addToast={addToast} />;
+      case 'Asistente IA':
+        return <CoordinadorIA addToast={addToast} />;
       case 'Mi Cuenta':
         return <CoordinadorMiCuenta user={user} addToast={addToast} />;
       default:
@@ -89,14 +105,14 @@ export default function CoordinadorView({ user, onLogout, globalState, addToast 
   };
 
   return (
-    <div className={`h-screen flex transition-colors duration-200 overflow-hidden ${darkMode ? 'bg-[#0b0f19] text-white' : 'light-mode bg-[#f8fafc] text-slate-900'}`}>
+    <div className={`h-screen flex transition-colors duration-200 overflow-hidden ${darkMode ? 'dark-mode bg-[#0b0f19] text-white' : 'light-mode'}`}>
       
       {/* SIDEBAR ESCRITORIO */}
       <aside className="hidden md:flex flex-col justify-between w-[220px] bg-[#151a26] border-r border-gray-800 shrink-0 select-none h-screen sticky top-0">
         <div>
           {/* Header Sidebar */}
           <div className="p-4 flex items-center gap-2.5 border-b border-gray-800/80">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-teal-500 to-teal-700 flex items-center justify-center text-white shrink-0 font-bold shadow-lg shadow-teal-600/30 border border-teal-400/20">
+            <div className="w-10 h-10 rounded-xl bg-teal-600 flex items-center justify-center text-white shrink-0 font-bold shadow-lg shadow-teal-600/30 border border-teal-400/20">
               <Building size={20} />
             </div>
             <div>
@@ -116,7 +132,7 @@ export default function CoordinadorView({ user, onLogout, globalState, addToast 
                   onClick={() => handleMenuClick(item.name)}
                   className={`w-full flex items-center justify-between px-3 py-2 text-xs font-semibold rounded-xl transition-all duration-300 cursor-pointer ${
                     isActive 
-                      ? 'bg-gradient-to-r from-teal-600 to-teal-500 text-white shadow-lg shadow-teal-500/30 scale-[1.02] border border-teal-400/20' 
+                      ? 'bg-teal-600 text-white shadow-lg shadow-teal-500/30 scale-[1.02] border border-teal-400/20' 
                       : 'text-gray-400 hover:bg-gray-800/80 hover:text-white'
                   }`}
                 >
@@ -173,7 +189,7 @@ export default function CoordinadorView({ user, onLogout, globalState, addToast 
             <div>
               <div className="p-4 flex items-center justify-between border-b border-gray-800/80">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-teal-500 to-teal-700 flex items-center justify-center text-white shrink-0 font-bold shadow-lg shadow-teal-600/30 border border-teal-400/20">
+                  <div className="w-10 h-10 rounded-xl bg-teal-600 flex items-center justify-center text-white shrink-0 font-bold shadow-lg shadow-teal-600/30 border border-teal-400/20">
                     <Building size={20} />
                   </div>
                   <div>
@@ -199,7 +215,7 @@ export default function CoordinadorView({ user, onLogout, globalState, addToast 
                       onClick={() => handleMenuClick(item.name)}
                       className={`w-full flex items-center justify-between px-3 py-2 text-xs font-semibold rounded-xl transition-all duration-300 cursor-pointer ${
                         isActive 
-                          ? 'bg-gradient-to-r from-teal-600 to-teal-500 text-white shadow-lg shadow-teal-500/30 scale-[1.02] border border-teal-400/20' 
+                          ? 'bg-teal-600 text-white shadow-lg shadow-teal-500/30 scale-[1.02] border border-teal-400/20' 
                           : 'text-gray-400 hover:bg-gray-800/80 hover:text-white'
                       }`}
                     >
@@ -251,17 +267,17 @@ export default function CoordinadorView({ user, onLogout, globalState, addToast 
           <div className="flex items-center gap-3">
             <button
               onClick={() => setMobileMenuOpen(true)}
-              className="p-1.5 text-gray-400 hover:text-white hover:bg-white/10 rounded-xl md:hidden transition-all cursor-pointer"
+              className="p-1.5 text-gray-400 hover:text-gray-800 hover:bg-gray-200 dark:hover:text-white dark:hover:bg-white/10 rounded-xl md:hidden transition-all cursor-pointer"
             >
               <Menu size={20} />
             </button>
-            <h1 className="text-xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 tracking-tight">{sectionActive}</h1>
+            <h1 className="text-xl font-extrabold text-teal-700 dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-white dark:to-gray-400 tracking-tight">{sectionActive}</h1>
           </div>
 
           <div className="flex items-center gap-3 select-none">
             <div className="text-right hidden sm:block">
-              <span className="block text-xs font-bold text-white leading-none">{user.name}</span>
-              <span className="text-[10px] text-teal-400 font-semibold leading-none">{user.email}</span>
+              <span className="block text-xs font-bold text-gray-800 dark:text-white leading-none">{user.name}</span>
+              <span className="text-[10px] text-teal-600 dark:text-teal-400 font-semibold leading-none">{user.email}</span>
             </div>
             
             <div className="w-8 h-8 rounded-lg bg-teal-900 border border-teal-700/60 flex items-center justify-center font-bold text-teal-400 text-xs shadow-inner">

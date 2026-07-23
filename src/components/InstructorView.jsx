@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { 
-  LayoutDashboard, Upload, FileText, User, Clock, Download, Bell, Moon, LogOut, Menu, X, Building 
+  LayoutDashboard, Upload, FileText, User, Clock, Bell, Moon, LogOut, Menu, X, Building, Sparkles 
 } from 'lucide-react';
 
 // Importar sub-pantallas
@@ -9,14 +9,14 @@ import InstructorCargarInforme from './instructor/InstructorCargarInforme';
 import InstructorMisInformes from './instructor/InstructorMisInformes';
 import InstructorCumplimiento from './instructor/InstructorCumplimiento';
 import InstructorHistorial from './instructor/InstructorHistorial';
-import InstructorPlantillas from './instructor/InstructorPlantillas';
 import InstructorNotificaciones from './instructor/InstructorNotificaciones';
 import InstructorMiCuenta from './instructor/InstructorMiCuenta';
+import InstructorAsistenteIA from './instructor/InstructorAsistenteIA';
 
 export default function InstructorView({ user, onLogout, globalState, addToast }) {
   const [sectionActive, setSectionActive] = useState('Dashboard');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [darkMode, setDarkMode] = useState(true); // Tema oscuro por defecto
+  const [darkMode, setDarkMode] = useState(false); // Tema claro (identidad SENA) por defecto
 
   const { 
     informes, 
@@ -38,9 +38,9 @@ export default function InstructorView({ user, onLogout, globalState, addToast }
     { name: 'Dashboard', icon: LayoutDashboard },
     { name: 'Cargar Informe', icon: Upload },
     { name: 'Mis Informes', icon: FileText },
+    { name: 'Asistente IA', icon: Sparkles },
     { name: 'Mi Cumplimiento', icon: User },
     { name: 'Historial', icon: Clock },
-    { name: 'Plantillas', icon: Download },
     { 
       name: 'Notificaciones', 
       icon: Bell, 
@@ -81,12 +81,12 @@ export default function InstructorView({ user, onLogout, globalState, addToast }
             addToast={addToast} 
           />
         );
+      case 'Asistente IA':
+        return <InstructorAsistenteIA addToast={addToast} />;
       case 'Mi Cumplimiento':
         return <InstructorCumplimiento />;
       case 'Historial':
         return <InstructorHistorial addToast={addToast} />;
-      case 'Plantillas':
-        return <InstructorPlantillas addToast={addToast} />;
       case 'Notificaciones':
         return (
           <InstructorNotificaciones 
@@ -110,7 +110,7 @@ export default function InstructorView({ user, onLogout, globalState, addToast }
   };
 
   return (
-    <div className={`h-screen flex transition-colors duration-200 overflow-hidden ${darkMode ? 'bg-[#0b0f19] text-white' : 'light-mode bg-[#f8fafc] text-slate-900'}`}>
+    <div className={`h-screen flex transition-colors duration-200 overflow-hidden ${darkMode ? 'dark-mode bg-[#0b0f19] text-white' : 'light-mode'}`}>
       
       {/* SIDEBAR ESCRITORIO (Fijo 220px) */}
       <aside className="hidden md:flex flex-col justify-between w-[220px] bg-[#151a26] border-r border-gray-800 shrink-0 select-none h-screen sticky top-0">

@@ -4,155 +4,266 @@
 
 @theme {
   --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  
-  /* Sobrescribir colores Teal con la gama Oficial del Verde SENA (#39A900) */
-  --color-teal-50: #f1fbf0;
+
+  /* ── Paleta verde SENA mapeada sobre teal ── */
+  --color-teal-50:  #f1fbf0;
   --color-teal-100: #e0f7de;
   --color-teal-200: #c0eebe;
   --color-teal-300: #91de8c;
   --color-teal-400: #5ec856;
-  --color-teal-500: #39a900; /* Verde Principal SENA */
-  --color-teal-600: #2c8700;
-  --color-teal-700: #216700;
+  --color-teal-500: #39a900;   /* Verde Principal SENA */
+  --color-teal-600: #2e7d32;   /* Verde oscuro SENA    */
+  --color-teal-700: #256128;
   --color-teal-800: #1d5204;
   --color-teal-900: #194506;
   --color-teal-950: #0b2502;
 
-  /* Variables específicas SENA */
-  --color-sena: #39a900;
-  --color-sena-dark: #2c8700;
+  /* Tokens semánticos SENA */
+  --color-sena:       #39a900;
+  --color-sena-dark:  #2e7d32;
   --color-sena-light: #5ec856;
 
-  /* Fondo oscuro ultra-premium para alto contraste con Verde SENA */
-  --color-dark-bg: #0b0f19;
-  --color-dark-card: #151a26;
+  /* Fondo oscuro ultra-premium (modo oscuro opcional) */
+  --color-dark-bg:     #0b0f19;
+  --color-dark-card:   #151a26;
   --color-dark-border: #242b3d;
 }
 
+/* ══════════════════════════════════════════
+   BASE — Identidad institucional SENA (Claro)
+   ══════════════════════════════════════════ */
+
 body {
-  background-color: #0b0f19;
-  color: #ffffff;
+  background-color: #f5f5f5;
+  color: #374151;
   font-family: var(--font-sans);
   min-height: 100vh;
   margin: 0;
   overflow-x: hidden;
 }
 
-/* Efectos de vidrio (Glassmorphism Premium) */
+/* ══════════════════════════════════════════
+   COMPONENTES DE SUPERFICIE — Modo claro
+   ══════════════════════════════════════════ */
+
+/* Panel principal: card blanca con sombra sutil */
 .glass-panel {
-  background: rgba(21, 26, 38, 0.75);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06), 0 4px 16px rgba(0, 0, 0, 0.04);
 }
 
+/* Card secundaria: fondo gris muy claro */
 .glass-card {
-  background: rgba(21, 26, 38, 0.5);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.04);
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
+/* Panel premium: blanco puro con borde superior verde sutil */
 .glass-premium {
-  background: linear-gradient(145deg, rgba(21, 26, 38, 0.9), rgba(11, 15, 25, 0.8));
-  backdrop-filter: blur(20px);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  border-left: 1px solid rgba(255, 255, 255, 0.05);
-  border-right: 1px solid rgba(0, 0, 0, 0.35);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.45);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-top: 2px solid #e5e7eb;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
 }
 
-/* Animaciones Avanzadas */
+/* ══════════════════════════════════════════
+   ANIMACIONES — Se conservan exactamente igual
+   ══════════════════════════════════════════ */
+
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes slideUp {
   from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes slideInRight {
   from { opacity: 0; transform: translateX(30px); }
-  to { opacity: 1; transform: translateX(0); }
+  to   { opacity: 1; transform: translateX(0); }
 }
 
 @keyframes softPulse {
   0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.85; transform: scale(0.98); }
+  50%       { opacity: 0.85; transform: scale(0.98); }
 }
 
 @keyframes glow {
   0%, 100% { box-shadow: 0 0 5px rgba(57, 169, 0, 0.25), 0 0 10px rgba(57, 169, 0, 0.15); }
-  50% { box-shadow: 0 0 12px rgba(57, 169, 0, 0.55), 0 0 24px rgba(57, 169, 0, 0.35); }
+  50%       { box-shadow: 0 0 12px rgba(57, 169, 0, 0.55), 0 0 24px rgba(57, 169, 0, 0.35); }
 }
 
-.animate-fade-in {
-  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+.animate-fade-in      { animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.animate-slide-up     { animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.animate-slide-in-right { animation: slideInRight 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.animate-soft-pulse   { animation: softPulse 2.5s infinite ease-in-out; }
+.animate-glow         { animation: glow 3s infinite ease-in-out; }
+
+/* ══════════════════════════════════════════
+   SCROLLBAR — Verde SENA
+   ══════════════════════════════════════════ */
+
+::-webkit-scrollbar         { width: 6px; height: 6px; }
+::-webkit-scrollbar-track   { background: transparent; }
+::-webkit-scrollbar-thumb   { background: #d1d5db; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #39a900; }
+
+/* ══════════════════════════════════════════
+   FORMULARIOS — Identidad SENA (modo claro)
+   ══════════════════════════════════════════ */
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="tel"],
+textarea,
+select {
+  background-color: #ffffff !important;
+  color: #374151 !important;
+  border-color: #d1d5db !important;
 }
 
-.animate-slide-up {
-  animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+input::placeholder,
+textarea::placeholder { color: #9ca3af !important; }
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none !important;
+  border-color: #39a900 !important;
+  box-shadow: 0 0 0 3px rgba(57, 169, 0, 0.15) !important;
 }
 
-.animate-slide-in-right {
-  animation: slideInRight 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+/* ══════════════════════════════════════════
+   MODO OSCURO — Opt-in vía toggle sidebar
+   ══════════════════════════════════════════ */
+
+/* Contenedor raíz en modo oscuro */
+.dark-mode {
+  background-color: #0b0f19 !important;
+  color: #ffffff !important;
 }
 
-.animate-soft-pulse {
-  animation: softPulse 2.5s infinite ease-in-out;
+/* Superficies en modo oscuro */
+.dark-mode .glass-panel {
+  background: rgba(21, 26, 38, 0.75) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15) !important;
 }
 
-.animate-glow {
-  animation: glow 3s infinite ease-in-out;
+.dark-mode .glass-card {
+  background: rgba(21, 26, 38, 0.5) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.04) !important;
 }
 
-/* Scrollbar personalizado mejorado */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-::-webkit-scrollbar-thumb {
-  background: rgba(55, 65, 81, 0.6);
-  border-radius: 10px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(57, 169, 0, 0.8);
+.dark-mode .glass-premium {
+  background: linear-gradient(145deg, rgba(21, 26, 38, 0.9), rgba(11, 15, 25, 0.8)) !important;
+  backdrop-filter: blur(20px) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-left: 1px solid rgba(255, 255, 255, 0.05) !important;
+  border-right: 1px solid rgba(0, 0, 0, 0.35) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.45) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25) !important;
 }
 
-/* ==========================================
-   ESTILOS PREMIUM TEMA CLARO (LIGHT MODE)
-   ========================================== */
+/* ── Fondos de sección ── */
+.dark-mode aside,
+.dark-mode [class*="bg-[#151a26]"],
+.dark-mode [class*="bg-[#1a1f2e]"],
+.dark-mode [class*="bg-[#252b3b]"],
+.dark-mode [class*="bg-[#242b3d]"],
+.dark-mode .bg-gray-800 {
+  background-color: #151a26 !important;
+}
 
-/* Variables locales del tema claro */
+.dark-mode [class*="bg-[#0b0f19]"],
+.dark-mode .bg-gray-900,
+.dark-mode .bg-gray-950 {
+  background-color: #0b0f19 !important;
+}
+
+/* ── Bordes en modo oscuro ── */
+.dark-mode .border-gray-800,
+.dark-mode .border-gray-700,
+.dark-mode [class*="border-gray-700/50"],
+.dark-mode [class*="border-gray-800/80"],
+.dark-mode [class*="border-gray-800/40"] {
+  border-color: #242b3d !important;
+}
+
+/* ── Texto en modo oscuro ── */
+.dark-mode .text-white,
+.dark-mode .text-gray-100,
+.dark-mode .text-gray-200,
+.dark-mode .text-gray-300,
+.dark-mode h1, .dark-mode h2,
+.dark-mode h3, .dark-mode h4,
+.dark-mode h5, .dark-mode h6 { color: #ffffff !important; }
+
+.dark-mode .text-gray-400,
+.dark-mode .text-gray-500       { color: #9ca3af !important; }
+
+/* ── Inputs en modo oscuro ── */
+.dark-mode select,
+.dark-mode input[type="text"],
+.dark-mode input[type="email"],
+.dark-mode input[type="password"],
+.dark-mode textarea {
+  background-color: rgba(36, 43, 61, 0.6) !important;
+  color: #ffffff !important;
+  border-color: #374151 !important;
+}
+
+.dark-mode input::placeholder,
+.dark-mode textarea::placeholder { color: #6b7280 !important; }
+
+/* ── Scrollbar en modo oscuro ── */
+.dark-mode ::-webkit-scrollbar-thumb { background: rgba(55, 65, 81, 0.6); }
+.dark-mode ::-webkit-scrollbar-thumb:hover { background: rgba(57, 169, 0, 0.8); }
+
+/* ── Tooltip Recharts en modo oscuro ── */
+.dark-mode .recharts-default-tooltip {
+  background-color: rgba(15, 23, 42, 0.95) !important;
+  border-color: rgba(55, 65, 81, 0.5) !important;
+  color: #ffffff !important;
+}
+
+/* ══════════════════════════════════════════
+   MODO CLARO — Identidad completa SENA
+   Sobrescrituras de clases inline de Tailwind
+   ══════════════════════════════════════════ */
+
+/* ── Contenedor raíz ── */
 .light-mode {
-  background-color: #f8fafc !important;
-  color: #0f172a !important;
+  background-color: #f5f5f5 !important;
+  color: #374151 !important;
 }
 
-/* Forzar que el fondo de la app sea blanco azulado limpio en modo claro */
 div.light-mode {
-  background-color: #f8fafc !important;
-  color: #0f172a !important;
+  background-color: #f5f5f5 !important;
+  color: #374151 !important;
 }
 
-/* Reemplazar fondos de tarjetas oscuras a tarjetas blancas puras */
+/* ── Sidebar y cards oscuras → blancas ── */
+.light-mode aside,
 .light-mode [class*="bg-[#1a1f2e]"],
 .light-mode [class*="bg-[#151a26]"],
 .light-mode .bg-gray-800,
 .light-mode [class*="bg-[#252b3b]"],
-.light-mode [class*="bg-[#242b3d]"],
-.light-mode aside {
+.light-mode [class*="bg-[#242b3d]"] {
   background-color: #ffffff !important;
 }
 
-/* Reemplazar subpaneles oscuros a gris claro de alto contraste */
+/* ── Paneles secundarios → gris muy claro ── */
 .light-mode .bg-gray-900,
 .light-mode .bg-gray-950,
 .light-mode [class*="bg-[#0b0f19]"],
@@ -160,15 +271,39 @@ div.light-mode {
 .light-mode [class*="bg-gray-900/80"],
 .light-mode [class*="bg-gray-900/20"],
 .light-mode [class*="bg-gray-800/40"],
+.light-mode [class*="bg-gray-800/30"],
 .light-mode [class*="bg-[#242b3d]/60"],
 .light-mode .bg-teal-950,
 .light-mode .bg-blue-950,
 .light-mode .bg-purple-950,
 .light-mode .bg-amber-950 {
-  background-color: #f1f5f9 !important;
+  background-color: #f9fafb !important;
 }
 
-/* Modificar bordes oscuros a bordes grises claros y limpios */
+/* ── Superficies glass → cards limpias ── */
+.light-mode .glass-panel {
+  background: #ffffff !important;
+  border: 1px solid #e5e7eb !important;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04) !important;
+  backdrop-filter: none !important;
+}
+
+.light-mode .glass-card {
+  background: #ffffff !important;
+  border: 1px solid #e5e7eb !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05) !important;
+  backdrop-filter: none !important;
+}
+
+.light-mode .glass-premium {
+  background: #ffffff !important;
+  border: 1px solid #e5e7eb !important;
+  border-top: 2px solid #e5e7eb !important;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06) !important;
+  backdrop-filter: none !important;
+}
+
+/* ── Bordes → grises claros ── */
 .light-mode .border-gray-800,
 .light-mode .border-gray-700,
 .light-mode .border-gray-850,
@@ -178,160 +313,266 @@ div.light-mode {
 .light-mode [class*="border-gray-800/40"],
 .light-mode [class*="border-teal-700/60"],
 .light-mode [class*="border-teal-500/30"],
-.light-mode [class*="border-amber-500/30"],
 .light-mode [class*="border-teal-700/50"],
-.light-mode .border-r-gray-700,
-.light-mode .border-y-gray-700,
+.light-mode [class*="border-amber-500/30"],
 .light-mode .border-r,
 .light-mode .border {
-  border-color: #e2e8f0 !important;
+  border-color: #e5e7eb !important;
 }
 
-.light-mode .border-l-orange-500 {
-  border-left-color: #f97316 !important;
-}
+/* Mantener borde izquierdo naranja en alertas */
+.light-mode .border-l-orange-500 { border-left-color: #f97316 !important; }
 
-/* Asegurar legibilidad del texto principal y secundario */
+/* ── Texto principal → gris oscuro SENA ── */
 .light-mode .text-white,
 .light-mode .text-gray-100,
 .light-mode .text-gray-200,
 .light-mode .text-gray-300,
-.light-mode h1,
-.light-mode h2,
-.light-mode h3,
-.light-mode h4,
-.light-mode h5,
-.light-mode h6 {
-  color: #0f172a !important;
+.light-mode h1, .light-mode h2,
+.light-mode h3, .light-mode h4,
+.light-mode h5, .light-mode h6 {
+  color: #374151 !important;
 }
 
+/* Texto con gradiente → texto plano oscuro */
+.light-mode .text-transparent {
+  -webkit-text-fill-color: #374151 !important;
+  background: none !important;
+}
+
+/* ── Texto secundario → gris medio ── */
 .light-mode .text-gray-400,
 .light-mode .text-gray-500,
 .light-mode [class*="text-teal-300/80"],
 .light-mode [class*="text-amber-300/80"] {
-  color: #475569 !important;
+  color: #6b7280 !important;
 }
 
-/* Mejorar el color del texto verde/teal para fondos claros (mejor contraste) */
+/* ── Texto verde → verde SENA bien contrastado ── */
 .light-mode .text-teal-400,
 .light-mode .text-teal-350,
 .light-mode .text-teal-300 {
-  color: #2c8700 !important; /* Verde oscuro SENA */
+  color: #2e7d32 !important;
 }
 
-/* Modificar badges del sistema */
-.light-mode [class*="bg-teal-950/40"] {
-  background-color: #f0fdf4 !important;
-  border-color: #cbd5e1 !important;
+.light-mode .text-teal-200 { color: #39a900 !important; }
+
+/* ── Ítem activo sidebar: gradiente → fondo verde sólido ── */
+.light-mode [class*="bg-gradient-to-r"][class*="from-teal-600"],
+.light-mode [class*="bg-gradient-to-r"][class*="from-teal"] {
+  background: #39a900 !important;
+  color: #ffffff !important;
 }
 
-.light-mode .text-teal-200 {
-  color: #15803d !important;
-}
-
-/* Glassmorphism adaptivo en modo claro */
-.light-mode .glass-panel {
-  background: rgba(255, 255, 255, 0.85) !important;
-  border: 1px solid rgba(15, 23, 42, 0.08) !important;
-  box-shadow: 0 4px 20px rgba(148, 163, 184, 0.08) !important;
-}
-
-.light-mode .glass-card {
-  background: rgba(255, 255, 255, 0.6) !important;
-  border: 1px solid rgba(15, 23, 42, 0.05) !important;
-  box-shadow: 0 2px 12px rgba(148, 163, 184, 0.04) !important;
-}
-
-.light-mode .glass-premium {
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.95)) !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.9) !important;
-  border-left: 1px solid rgba(255, 255, 255, 0.8) !important;
-  border-bottom: 1px solid rgba(148, 163, 184, 0.15) !important;
-  border-right: 1px solid rgba(148, 163, 184, 0.1) !important;
-  box-shadow: 0 8px 30px rgba(148, 163, 184, 0.1) !important;
-}
-
-/* Sombras en modo claro */
-.light-mode .shadow-2xl {
-  box-shadow: 0 25px 50px -12px rgba(148, 163, 184, 0.15) !important;
-}
-
-/* Elementos activos del sidebar */
+/* ── Ítem hover sidebar ── */
 .light-mode [class*="hover:bg-gray-800/80"]:hover,
 .light-mode .hover\:bg-gray-800:hover,
 .light-mode .hover\:bg-gray-750:hover {
-  background-color: #f1f5f9 !important;
-  color: #39a900 !important;
+  background-color: #f0fdf4 !important;
+  color: #2e7d32 !important;
 }
 
 .light-mode [class*="text-gray-400"][class*="hover:text-white"]:hover {
-  color: #2c8700 !important;
+  color: #2e7d32 !important;
 }
 
-/* Botones en inputs */
+/* ── Backgrounds con opacidad oscuros → eliminados ── */
+.light-mode [class*="bg-gray-900/60"],
+.light-mode [class*="bg-gray-900/80"] {
+  background-color: #f3f4f6 !important;
+}
+
+/* ── Badge contadores ── */
+.light-mode [class*="bg-teal-950/40"],
+.light-mode [class*="bg-teal-950/80"] {
+  background-color: #f0fdf4 !important;
+  border-color: #bbf7d0 !important;
+  color: #2e7d32 !important;
+}
+
+.light-mode [class*="bg-teal-950/60"] {
+  background-color: #dcfce7 !important;
+}
+
+/* ── Badge íconos de sección (Cargar Informe, Mis Informes, etc.) ── */
+.light-mode [class*="bg-gradient-to-br"][class*="from-teal-900"] {
+  background-color: #e0f7de !important;
+}
+
+.light-mode [class*="bg-gradient-to-br"][class*="from-blue-900"],
+.light-mode [class*="bg-gradient-to-br"][class*="from-amber-900"],
+.light-mode [class*="bg-gradient-to-br"][class*="from-purple-900"],
+.light-mode [class*="bg-gradient-to-br"][class*="from-red-900"] {
+  background-color: #f9fafb !important;
+  border: 1px solid #e5e7eb !important;
+}
+
+/* ── Colores de ícono de badge en light mode ── */
+.light-mode .text-teal-400   { color: #2e7d32 !important; }
+.light-mode .text-blue-400,
+.light-mode .text-purple-400,
+.light-mode .text-amber-400,
+.light-mode .text-red-400    { color: #4b5563 !important; }
+
+/* ── Fondos de íconos con opacidad ── */
+.light-mode [class*="bg-teal-500/20"]   { background-color: #e0f7de !important; }
+.light-mode [class*="bg-blue-500/20"],
+.light-mode [class*="bg-amber-500/20"],
+.light-mode [class*="bg-purple-500/20"],
+.light-mode [class*="bg-red-500/20"]    { background-color: #f3f4f6 !important; }
+
+/* ── Links → verde SENA ── */
+.light-mode a,
+.light-mode .text-teal-400 { color: #39a900 !important; }
+
+/* ── Inputs, selects ── */
 .light-mode select,
 .light-mode input[type="text"],
 .light-mode input[type="email"],
 .light-mode input[type="password"],
 .light-mode textarea {
   background-color: #ffffff !important;
-  color: #0f172a !important;
-  border-color: #cbd5e1 !important;
+  color: #374151 !important;
+  border-color: #d1d5db !important;
 }
 
 .light-mode select::placeholder,
 .light-mode input::placeholder,
 .light-mode textarea::placeholder {
-  color: #94a3b8 !important;
+  color: #9ca3af !important;
 }
 
-/* Badges e iconos específicos de Lucide */
-.light-mode .text-blue-400 {
-  color: #1d4ed8 !important;
-}
-.light-mode .text-purple-400 {
-  color: #7e22ce !important;
-}
-.light-mode .text-amber-400 {
-  color: #b45309 !important;
+.light-mode select:focus,
+.light-mode input:focus,
+.light-mode textarea:focus {
+  border-color: #39a900 !important;
+  box-shadow: 0 0 0 3px rgba(57, 169, 0, 0.15) !important;
 }
 
-.light-mode [class*="bg-blue-500/20"] {
-  background-color: rgba(29, 78, 216, 0.1) !important;
-}
-.light-mode [class*="bg-amber-500/20"] {
-  background-color: rgba(180, 83, 9, 0.1) !important;
-}
-.light-mode [class*="bg-purple-500/20"] {
-  background-color: rgba(126, 34, 206, 0.1) !important;
+/* Inputs con clase específica del proyecto */
+.light-mode [class*="bg-[#242b3d]"],
+.light-mode [class*="bg-[#242b3d]/60"] {
+  background-color: #ffffff !important;
+  border-color: #d1d5db !important;
 }
 
-/* Alertas especiales en modo claro */
+.light-mode [class*="focus:border-teal-500"] {
+  border-color: #39a900 !important;
+}
+
+/* ── Toggle modo oscuro ── */
+.light-mode [class*="bg-teal-600"] {
+  background-color: #39a900 !important;
+}
+
+.light-mode [class*="bg-gray-700"] {
+  background-color: #d1d5db !important;
+}
+
+/* ── Avatar usuario ── */
+.light-mode [class*="bg-teal-900"] {
+  background-color: #f0fdf4 !important;
+}
+
+.light-mode [class*="border-teal-700/60"] {
+  border-color: #bbf7d0 !important;
+}
+
+/* ── Sombra shadow-2xl en modo claro ── */
+.light-mode .shadow-2xl {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* ── Alertas de error ── */
 .light-mode [class*="bg-red-950/40"],
 .light-mode [class*="bg-red-950/80"] {
   background-color: #fef2f2 !important;
   border-color: #fecaca !important;
 }
+
 .light-mode .text-red-200,
-.light-mode .text-red-300 {
-  color: #991b1b !important;
+.light-mode .text-red-300 { color: #991b1b !important; }
+
+/* ── Alertas de éxito ── */
+.light-mode [class*="bg-green-950/80"] {
+  background-color: #f0fdf4 !important;
+  border-color: #bbf7d0 !important;
 }
 
-/* Tooltips de Recharts */
+.light-mode .text-green-200 { color: #166534 !important; }
+.light-mode .text-green-400 { color: #15803d !important; }
+
+/* ── Tooltip Recharts ── */
 .light-mode .recharts-default-tooltip {
   background-color: #ffffff !important;
-  border-color: #cbd5e1 !important;
-  color: #0f172a !important;
-  box-shadow: 0 10px 15px -3px rgba(148, 163, 184, 0.1) !important;
+  border-color: #e5e7eb !important;
+  color: #374151 !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08) !important;
 }
 
-/* Modales en modo claro */
+/* ── Contadores regresivos (dashboard) ── */
+.light-mode [class*="bg-gray-900/80"] {
+  background-color: #f9fafb !important;
+  border-color: #e5e7eb !important;
+}
+
+/* ── Modales ── */
 .light-mode [class*="bg-[#1a1f2e]/80"] {
-  background-color: rgba(15, 23, 42, 0.3) !important;
+  background-color: rgba(55, 65, 81, 0.3) !important;
 }
 
-.light-mode [class*="bg-gray-800/30"] {
-  background-color: #f8fafc !important;
+/* ── Header superior ── */
+.light-mode header.sticky {
+  background: #ffffff !important;
+  border-bottom: 1px solid #e5e7eb !important;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06) !important;
 }
 
+/* ── Banner alertas con borde lateral coloreado ── */
+.light-mode [class*="border-amber-500/30"] { border-color: #fcd34d !important; }
+.light-mode [class*="border-teal-500/30"]  { border-color: #6ee7b7 !important; }
+.light-mode [class*="border-red-500/50"]   { border-color: #fca5a5 !important; }
 
+/* ── Badges de estado (StatusBadge) ── */
+.light-mode [class*="bg-teal-950/80"] {
+  background-color: #f0fdf4 !important;
+  border-color: #a7f3d0 !important;
+}
+
+.light-mode [class*="bg-amber-950/80"] {
+  background-color: #fffbeb !important;
+  border-color: #fde68a !important;
+}
+
+.light-mode [class*="bg-blue-950/80"] {
+  background-color: #eff6ff !important;
+  border-color: #bfdbfe !important;
+}
+
+.light-mode [class*="bg-orange-950/80"] {
+  background-color: #fff7ed !important;
+  border-color: #fed7aa !important;
+}
+
+.light-mode [class*="bg-teal-900/60"] {
+  background-color: #f0fdf4 !important;
+  border-color: #bbf7d0 !important;
+}
+
+.light-mode [class*="bg-gray-800/80"] {
+  background-color: #f9fafb !important;
+  border-color: #e5e7eb !important;
+}
+
+/* Texto de badges */
+.light-mode .text-teal-300  { color: #2e7d32 !important; }
+.light-mode .text-teal-200  { color: #39a900 !important; }
+.light-mode .text-amber-300,
+.light-mode .text-blue-300,
+.light-mode .text-orange-300 { color: #4b5563 !important; }
+
+/* ── Barra de progreso ── */
+.light-mode .bg-gray-700\/50 { background-color: #e5e7eb !important; }
+
+/* ── Backdrop oscuro del modal ── */
+.light-mode .bg-black\/60 { background-color: rgba(17, 24, 39, 0.5) !important; }

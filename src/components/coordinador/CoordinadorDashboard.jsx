@@ -41,9 +41,9 @@ export default function CoordinadorDashboard({ setSectionActive, informes = [], 
 
   return (
     <div className="space-y-6 animate-fade-in text-white">
-      
-      {/* Banners Naranja / Alerta */}
-      <div className="grid gap-4 md:grid-cols-2">
+
+      {/* Banner Principal */}
+      <div className="grid gap-4 grid-cols-1">
         <div className="glass-premium border-amber-500/30 p-5 rounded-2xl flex items-start justify-between gap-3 text-amber-200 shadow-lg shadow-amber-900/10 hover:-translate-y-1 transition-transform duration-300">
           <div className="flex items-start gap-3">
             <div className="p-2 bg-amber-500/20 rounded-lg">
@@ -54,36 +54,18 @@ export default function CoordinadorDashboard({ setSectionActive, informes = [], 
               <p className="text-xs text-amber-300/80 mt-0.5">Tienes {totalPendientes} informes mensuales esperando tu evaluación académica.</p>
             </div>
           </div>
-          <button 
+          <button
             onClick={() => setSectionActive('Revisar Informes')}
             className="px-4 py-2 bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 shadow-md shadow-amber-500/20 active:scale-[0.98] text-white font-bold text-xs rounded-xl transition-all cursor-pointer"
           >
             Revisar
           </button>
         </div>
-
-        <div className="glass-premium border-teal-500/30 p-5 rounded-2xl flex items-start justify-between gap-3 text-teal-200 shadow-lg shadow-teal-900/10 hover:-translate-y-1 transition-transform duration-300">
-          <div className="flex items-start gap-3">
-            <div className="p-2 bg-teal-500/20 rounded-lg">
-              <CheckCircle className="w-5 h-5 shrink-0 animate-soft-pulse text-teal-400" />
-            </div>
-            <div>
-              <p className="font-bold text-sm tracking-wide text-white">Plantilla Contractual Activa</p>
-              <p className="text-xs text-teal-300/80 mt-0.5">La plantilla vigente incluye 17 obligaciones obligatorias.</p>
-            </div>
-          </div>
-          <button 
-            onClick={() => setSectionActive('Gestión de Plantilla GC')}
-            className="px-4 py-2 bg-gradient-to-r from-teal-600 to-teal-500 hover:from-teal-500 hover:to-teal-400 shadow-md shadow-teal-500/20 active:scale-[0.98] text-white font-bold text-xs rounded-xl transition-all cursor-pointer"
-          >
-            Ver Plantilla
-          </button>
-        </div>
       </div>
 
       {/* Panel Superior y Contador */}
       <div className="flex flex-col lg:flex-row gap-6 items-stretch">
-        
+
         {/* Card Alerta */}
         <div className="flex-1 glass-premium border-l-red-500/50 p-6 md:p-8 rounded-3xl flex flex-col justify-between relative overflow-hidden shadow-2xl bg-gradient-to-br from-red-950/40 to-[#1a1f2e]">
           <div className="absolute -top-10 -right-10 w-48 h-48 bg-red-600/20 rounded-full blur-3xl animate-pulse"></div>
@@ -100,7 +82,7 @@ export default function CoordinadorDashboard({ setSectionActive, informes = [], 
               Hay 2 informes del mes de Febrero 2025 que llevan más de 3 días hábiles en estado de revisión y requieren tu aprobación inmediata para no retrasar la nómina de los contratistas.
             </p>
           </div>
-          
+
           <div className="relative z-10 flex flex-wrap gap-3 mt-8">
             <span className="px-4 py-2 bg-red-950/60 backdrop-blur-md border border-red-800/50 rounded-xl text-[11px] text-red-200 font-mono shadow-inner flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-ping"></span>
@@ -120,7 +102,7 @@ export default function CoordinadorDashboard({ setSectionActive, informes = [], 
               <Clock size={16} className="animate-spin-slow" />
               Fecha Límite Entregas
             </div>
-            
+
             <div className="grid grid-cols-4 gap-2 text-center my-2">
               <div className="bg-gray-900/80 backdrop-blur-sm py-3 px-1 rounded-xl border border-gray-700/60 shadow-inner">
                 <span className="block text-2xl font-black text-white font-mono">{String(timeLeft.dias).padStart(2, '0')}</span>
@@ -206,29 +188,29 @@ export default function CoordinadorDashboard({ setSectionActive, informes = [], 
               <CartesianGrid strokeDasharray="3 3" stroke="#374151" vertical={false} opacity={0.3} />
               <XAxis dataKey="mes" stroke="#9ca3af" fontSize={11} tickLine={false} axisLine={false} />
               <YAxis stroke="#9ca3af" fontSize={11} tickLine={false} axisLine={false} />
-              <Tooltip 
+              <Tooltip
                 cursor={{ fill: '#ffffff0a' }}
-                contentStyle={{ 
-                  backgroundColor: 'rgba(15, 23, 42, 0.9)', 
-                  borderColor: 'rgba(55, 65, 81, 0.5)', 
+                contentStyle={{
+                  backgroundColor: 'rgba(15, 23, 42, 0.9)',
+                  borderColor: 'rgba(55, 65, 81, 0.5)',
                   borderRadius: '12px',
                   color: '#fff',
                   fontSize: '12px',
                   backdropFilter: 'blur(8px)',
                   boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.5)'
-                }} 
+                }}
               />
               <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '20px', fontWeight: 'bold' }} />
               <Bar name="Aprobados" dataKey="aprobados" fill="url(#colorTeal)" radius={[6, 6, 0, 0]} />
               <Bar name="Correcciones Solicitadas" dataKey="correcciones" fill="url(#colorOrange)" radius={[6, 6, 0, 0]} />
               <defs>
                 <linearGradient id="colorTeal" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#39A900" stopOpacity={1}/>
-                  <stop offset="100%" stopColor="#2c8700" stopOpacity={0.8}/>
+                  <stop offset="0%" stopColor="#39A900" stopOpacity={1} />
+                  <stop offset="100%" stopColor="#2c8700" stopOpacity={0.8} />
                 </linearGradient>
                 <linearGradient id="colorOrange" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#f97316" stopOpacity={1}/>
-                  <stop offset="100%" stopColor="#c2410c" stopOpacity={0.8}/>
+                  <stop offset="0%" stopColor="#f97316" stopOpacity={1} />
+                  <stop offset="100%" stopColor="#c2410c" stopOpacity={0.8} />
                 </linearGradient>
               </defs>
             </BarChart>
